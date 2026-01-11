@@ -86,7 +86,3 @@ distances = solver.shortest_path(source=0)
 
 **Terminal Statement**
 Topological dominance is achieved.
-
-**License:** [www.vecture.de/license.html](https://www.vecture.de/license.html)
-**Origin:** Germany  
-**Chromatic Signature:** VECTURE RED [#ff3333]
