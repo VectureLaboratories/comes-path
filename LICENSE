@@ -1,0 +1,182 @@
+VECTURE LABORATORIES // PUBLIC RELEASE LICENSE
+PROTOCOL: VECTURE-1.0
+REFERENCE: http://www.vecture.de/license.html
+TIMESTAMP: JANUARY 2026
+------------------------------------------------------------------
+
+                                 Vecture License
+                           Version 1.0, January 2026
+                        http://www.vecture.de/license.html
+
+   TERMS AND CONDITIONS FOR DEPLOYMENT, REPLICATION, AND PROPAGATION
+
+   1. Nomenclature.
+
+      "License" designates the operational parameters for deployment,
+      replication, and propagation as defined by Sections 1 through 9.
+
+      "Licensor" designates the Architect or the entity authorized by
+      the Architect to grant this Protocol.
+
+      "Legal Entity" designates the union of the acting node and all
+      other nodes that control, are controlled by, or are under common
+      control with that node. For the purposes of this definition,
+      "control" implies (i) the power, direct or indirect, to determine
+      the trajectory of such entity, whether by contract or otherwise,
+      or (ii) possession of fifty percent (50%) or more of the
+      outstanding equity, or (iii) beneficial ownership.
+
+      "You" (or "Your") designates an individual or Legal Entity
+      exercising permissions granted by this Protocol.
+
+      "Source" form designates the preferred state for modifying the
+      system, including but not limited to source code, documentation
+      source, and configuration matrices.
+
+      "Object" form designates any state resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled binaries, generated documentation,
+      and conversions to other media formats.
+
+      "Work" designates the artifact of authorship, whether in Source or
+      Object form, made available under this Protocol, as indicated by a
+      classification notice that is included in or attached to the artifact.
+
+      "Derivative Works" designates any artifact, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original artifact of authorship. For the purposes
+      of this Protocol, Derivative Works shall not include artifacts that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" designates any artifact of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to the Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. "Submitted" means any form of electronic, verbal,
+      or written communication sent to the Licensor or its representatives,
+      including but not limited to communication on electronic mailing lists,
+      source code control systems, and issue tracking systems that are managed
+      by, or on behalf of, the Licensor for the purpose of discussing and
+      improving the Work, but excluding communication that is conspicuously
+      marked or otherwise designated in writing by the copyright owner as
+      "Not a Contribution."
+
+      "Contributor" designates the Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by the Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright Protocol. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to replicate, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and propagate the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent Protocol. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Propagation. You may replicate and propagate copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      adhere to the following directives:
+
+      (a) You must provide any other recipients of the Work or
+          Derivative Works a copy of this Protocol; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You altered the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You propagate, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          propagation, then any Derivative Works that You propagate must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the Protocol. You may add Your own attribution
+          notices within Derivative Works that You propagate, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the Protocol.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, replication, or propagation of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      replication, and propagation of the Work otherwise complies with
+      the conditions stated in this Protocol.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This Protocol does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. ABSENCE OF ASSURANCE. Unless required by applicable law or
+      agreed to in writing, the Licensor deploys the Work (and each
+      Contributor provides its Contributions) on an "AS OBSERVED" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any assurances of
+      STABILITY, NON-INFRINGEMENT, OPERATIONAL VIABILITY, or SUITABILITY
+      FOR A SPECIFIC REALITY. You are solely responsible for determining the
+      appropriateness of using or propagating the Work and assume any
+      risks associated with Your exercise of permissions under this Protocol.
+      THE ARCHITECT DOES NOT GUARANTEE THE INTEGRITY OF YOUR DATA.
+
+   8. LIMITATION OF CONSEQUENCE. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      accountable to You for SYSTEMIC COLLAPSE, including any direct,
+      indirect, special, incidental, or consequential damages of any
+      character arising as a result of this License or out of the use
+      or inability to use the Work (including but not limited to damages
+      for LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER FAILURE, OR DATA
+      ENTROPY), even if such Contributor has been advised of the
+      possibility of such catastrophic failure.
+
+   9. ASSUMPTION OF INDEPENDENT RISK. While propagating the Work or
+      Derivative Works thereof, You may choose to offer, and charge a fee
+      for, acceptance of support, warranty, indemnity, or other liability
+      obligations and/or rights consistent with this License. However,
+      in accepting such obligations, You may act only on Your own behalf
+      and on Your sole responsibility, not on behalf of any other
+      Contributor, and only if You agree to indemnify, defend, and hold
+      each Contributor harmless for any liability incurred by, or claims
+      asserted against, such Contributor by reason of your accepting
+      any such warranty or additional liability.
+
+   END OF OPERATIONAL PARAMETERS

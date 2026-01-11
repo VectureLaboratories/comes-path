@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comes-path"
+version = "0.1.0"
+authors = [
+  { name="Vecture Laboratories", email="engineering@vecture.de" },
+]
+description = "Sub-logarithmic shortest path computation utilizing Frontier Partitioning."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: Other/Proprietary License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = [
+    "numpy",
+    "numba",
+    "scipy",
+    "networkx",
+]
+
+[project.urls]
+"Homepage" = "https://www.vecture.de"
+"Bug Tracker" = "https://github.com/VectureLaboratories/comes-path/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["comes_path", "comes_path.*"]

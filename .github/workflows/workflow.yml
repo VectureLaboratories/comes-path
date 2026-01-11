@@ -1,0 +1,47 @@
+name: Comes-Path CI/CD Protocol
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    name: Technical Integrity Verification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run Unit Tests
+      run: PYTHONPATH=. python3 tests/test_core.py
+    - name: Run Technical Loop
+      run: PYTHONPATH=. python3 technical_test.py
+
+  publish:
+    name: PyPI Distribution Protocol
+    needs: verify
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+    - name: Install Build Tools
+      run: pip install build
+    - name: Build Distributions
+      run: python -m build
+    - name: Upload to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
