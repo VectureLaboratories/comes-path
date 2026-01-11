@@ -21,13 +21,7 @@ spec = [
 
 @jitclass(spec)
 class FrontierBucket:
-    """
-    Circular quantized buffer for O(1) node extraction.
-    
-    The structure eliminates sorting overhead by mapping distances to discrete buckets.
-    Bitmask acceleration ensures O(1) discovery of active signals in sparse fields.
-    """
-    def __init__(self, num_buckets, bucket_width, initial_capacity=1024):
+    def __init__(self, num_buckets, bucket_width, initial_capacity=4096):
         self.num_buckets = ((num_buckets + 63) // 64) * 64
         self.bucket_width = bucket_width
         self.buckets = np.full((self.num_buckets, initial_capacity), -1, dtype=np.int64)
@@ -45,11 +39,17 @@ class FrontierBucket:
     def insert(self, node_id, distance):
         idx = int(distance / self.bucket_width) % self.num_buckets
         count = self.bucket_counts[idx]
+        
+        # Robust resize logic
         if count >= self.buckets.shape[1]:
-            new_capacity = self.buckets.shape[1] * 2
-            new_buckets = np.full((self.num_buckets, new_capacity), -1, dtype=np.int64)
-            new_buckets[:, :self.buckets.shape[1]] = self.buckets
+            new_cap = self.buckets.shape[1] * 2
+            new_buckets = np.full((self.num_buckets, new_cap), -1, dtype=np.int64)
+            # Copy all buckets
+            for i in range(self.num_buckets):
+                if self.bucket_counts[i] > 0:
+                    new_buckets[i, :self.bucket_counts[i]] = self.buckets[i, :self.bucket_counts[i]]
             self.buckets = new_buckets
+            
         self.buckets[idx, count] = node_id
         self.bucket_counts[idx] = count + 1
         self.count_in_frontier += 1

@@ -17,12 +17,10 @@ def relax_pivots(
     data, 
     pivots, 
     frontier,
-    lookahead_depth=2
+    lookahead_depth=1 # Default to 1 for stability
 ):
     """
-    Perform multi-hop topological jumps.
-    If current_node is a pivot or leads to one, the search space is collapsed 
-    via look-ahead relaxation.
+    Perform multi-hop topological jumps via iterative relaxation.
     """
     for i in range(indptr[u], indptr[u + 1]):
         v = indices[i]
@@ -33,8 +31,9 @@ def relax_pivots(
             distances[v] = new_dist
             frontier.insert(v, new_dist)
             
-            # Recursive topological expansion if depth permits and pivot is encountered
-            if lookahead_depth > 1 and pivots[v]:
+            # Limited iterative look-ahead for pivots to avoid stack overflow
+            if pivots[v]:
+                # Single-level look-ahead expansion
                 for j in range(indptr[v], indptr[v+1]):
                     nv = indices[j]
                     nw = data[j]
@@ -47,7 +46,6 @@ def relax_pivots(
 def identify_pivots(indptr, threshold=None):
     """
     Identify topological pivots based on degree distribution.
-    Nodes with connectivity exceeding the threshold are classified as Pivots.
     """
     num_nodes = len(indptr) - 1
     degrees = np.zeros(num_nodes, dtype=np.int64)
@@ -55,6 +53,7 @@ def identify_pivots(indptr, threshold=None):
         degrees[i] = indptr[i+1] - indptr[i]
     
     if threshold is None:
-        threshold = np.mean(degrees) * 2
+        # Use high percentile for pivots to ensure they are true hubs
+        threshold = np.percentile(degrees, 99)
         
     return degrees >= threshold
