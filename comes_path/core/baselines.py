@@ -15,12 +15,10 @@ def heappush(heap, counts, item_dist, item_node):
     heap[idx, 1] = item_node
     counts[0] += 1
     
-    # Sift up
     curr = idx
     while curr > 0:
         parent = (curr - 1) // 2
         if heap[curr, 0] < heap[parent, 0]:
-            # Swap
             tmp_d = heap[curr, 0]
             tmp_n = heap[curr, 1]
             heap[curr, 0] = heap[parent, 0]
@@ -33,7 +31,7 @@ def heappush(heap, counts, item_dist, item_node):
 
 @njit(fastmath=True, cache=True)
 def heappop(heap, counts):
-    if counts[0] == 0:
+    if counts[0] <= 0:
         return -1.0, -1
     
     res_dist = heap[0, 0]
@@ -44,7 +42,6 @@ def heappop(heap, counts):
     heap[0, 0] = heap[last_idx, 0]
     heap[0, 1] = heap[last_idx, 1]
     
-    # Sift down
     curr = 0
     while True:
         left = 2 * curr + 1
@@ -71,17 +68,13 @@ def heappop(heap, counts):
 
 @njit(fastmath=True, cache=True)
 def numba_dijkstra(indices, indptr, data, source, num_nodes):
-    """
-    Standard Dijkstra implementation utilizing a Binary Heap in Numba.
-    Complexity: O(E log V)
-    """
     distances = np.full(num_nodes, np.inf, dtype=np.float64)
     distances[source] = 0.0
     settled = np.zeros(num_nodes, dtype=np.bool_)
     
-    # Binary Heap: [distance, node_id]
-    # Max capacity: number of edges
-    heap = np.empty((len(indices), 2), dtype=np.float64)
+    # Ensure heap is large enough for all potential relaxations
+    # In worst case, every edge could be a push.
+    heap = np.empty((len(indices) + num_nodes, 2), dtype=np.float64)
     counts = np.zeros(1, dtype=np.int64)
     
     heappush(heap, counts, 0.0, float(source))

@@ -4,26 +4,33 @@ from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import dijkstra
 from comes_path.core.solver import ComesSolver
 from comes_path.core.baselines import numba_dijkstra
-import networkx as nx
 
-def generate_scale_free_graph(n, m_edges):
-    """
-    Generate a Barabási–Albert scale-free graph.
-    Hub nodes will act as strategic pivots.
-    """
-    print(f"Generating Scale-Free Graph (n={n}, m={m_edges})...")
-    G = nx.barabasi_albert_graph(n, m_edges)
-    # Add random weights
-    for (u, v) in G.edges():
-        G.edges[u,v]['weight'] = np.random.rand() + 0.1
-    return nx.to_scipy_sparse_array(G, format='csr')
+def generate_grid_graph(dim):
+    n = dim * dim
+    print(f"Generating grid graph with {n} nodes...")
+    rows = []
+    cols = []
+    data = []
+    for r in range(dim):
+        for c in range(dim):
+            u = r * dim + c
+            if c + 1 < dim:
+                v = r * dim + (c + 1)
+                rows.append(u); cols.append(v)
+                data.append(np.random.rand() + 1.0)
+            if r + 1 < dim:
+                v = (r + 1) * dim + c
+                rows.append(u); cols.append(v)
+                data.append(np.random.rand() + 1.0)
+    adj = csr_matrix((data, (rows, cols)), shape=(n, n))
+    adj = adj + adj.T
+    return adj.tocsr()
 
 def run_benchmark():
-    n = 100_000 
-    m_param = 5 # Number of edges to attach from a new node to existing nodes
+    dim = 1000
+    n = dim * dim
     source = 0
-    
-    adj_csr = generate_scale_free_graph(n, m_param)
+    adj_csr = generate_grid_graph(dim)
     
     print("Starting SciPy Dijkstra (C++ Heap)...")
     start = time.time()
@@ -31,7 +38,7 @@ def run_benchmark():
     print(f"SciPy Dijkstra: {time.time() - start:.4f}s")
     
     print("\nStarting Numba Dijkstra (Baseline Heap)...")
-    numba_dijkstra(adj_csr.indices, adj_csr.indptr, adj_csr.data, source, 10) # Warm-up
+    numba_dijkstra(adj_csr.indices, adj_csr.indptr, adj_csr.data, source, 10)
     start = time.time()
     d_numba = numba_dijkstra(adj_csr.indices, adj_csr.indptr, adj_csr.data, source, n)
     numba_time = time.time() - start
@@ -39,7 +46,7 @@ def run_benchmark():
     
     print("\nStarting ComesSolver (Frontier Partitioning)...")
     solver = ComesSolver(adj_csr)
-    solver.shortest_path(source, target=10) # Trigger JIT compilation
+    solver.shortest_path(source, target=10)
     start = time.time()
     d_comes = solver.shortest_path(source)
     comes_time = time.time() - start
@@ -48,7 +55,6 @@ def run_benchmark():
     improvement_vs_numba = (numba_time - comes_time) / numba_time * 100
     print(f"\nAlgorithmic Dominance (Comes vs Numba-Heap): {improvement_vs_numba:.2f}%")
     
-    # Validation of result integrity
     mask = np.isfinite(d_scipy)
     if np.allclose(d_scipy[mask], d_comes[mask], atol=1e-5):
         print("Validation PASSED.")
